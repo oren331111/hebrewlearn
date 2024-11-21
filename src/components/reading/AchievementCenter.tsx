@@ -10,6 +10,7 @@ interface Achievement {
   unlocked: boolean;
   unlockedAt?: Date;
   xpReward: number;
+  category: string;  // Added this property
 }
 
 interface AchievementCenterProps {
@@ -18,11 +19,9 @@ interface AchievementCenterProps {
 
 export function AchievementCenter({ achievements }: AchievementCenterProps) {
   const categories = [
-    { id: 'reading', name: 'Reading Master', icon: Book },
     { id: 'streak', name: 'Consistency', icon: Target },
-    { id: 'speed', name: 'Speed Reader', icon: Clock },
     { id: 'accuracy', name: 'Accuracy', icon: Star }
-  ];
+  ] as const;
 
   return (
     <div className="space-y-8">
@@ -76,9 +75,9 @@ export function AchievementCenter({ achievements }: AchievementCenterProps) {
                     </div>
                   )}
 
-                  {achievement.unlocked && (
+                  {achievement.unlocked && achievement.unlockedAt && (
                     <div className="text-sm text-gray-500">
-                      Unlocked: {new Date(achievement.unlockedAt!).toLocaleDateString()}
+                      Unlocked: {new Date(achievement.unlockedAt).toLocaleDateString()}
                     </div>
                   )}
 

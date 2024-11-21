@@ -1,6 +1,5 @@
-```typescript
 import { motion } from 'framer-motion';
-import { Trophy, Star, Award } from 'lucide-react';
+import { Star, Award } from 'lucide-react';
 import { readingLevels } from '@/data/stories';
 
 interface LevelProgressProps {
@@ -21,7 +20,7 @@ export function LevelProgress({ currentXP, level, progress }: LevelProgressProps
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-bold">Level {level}</h3>
-        <span className="text-brand-600 font-semibold">{currentLevel.name}</span>
+        <span className="text-brand-600 font-semibold">{currentLevel?.name}</span>
       </div>
 
       <div className="relative pt-1">
@@ -39,7 +38,7 @@ export function LevelProgress({ currentXP, level, progress }: LevelProgressProps
         </div>
         <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-brand-100">
           <motion.div
-            initial={{ width: 0 }}
+            initial={{ width: "0%" }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 1 }}
             className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-brand-600"
@@ -53,7 +52,7 @@ export function LevelProgress({ currentXP, level, progress }: LevelProgressProps
       <div className="mt-4">
         <h4 className="font-semibold mb-2">Level Benefits:</h4>
         <ul className="space-y-2">
-          {currentLevel.benefits.map((benefit, index) => (
+          {currentLevel?.benefits.map((benefit, index) => (
             <li key={index} className="flex items-center text-sm text-gray-600">
               <Star className="h-4 w-4 text-brand-600 mr-2" />
               {benefit}
@@ -78,4 +77,3 @@ export function LevelProgress({ currentXP, level, progress }: LevelProgressProps
     </motion.div>
   );
 }
-```
