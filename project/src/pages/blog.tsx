@@ -1,7 +1,18 @@
 import { motion } from 'framer-motion';
 import { Calendar, User, Tag } from 'lucide-react';
 
-const blogPosts = [
+// Define the type for a blog post
+interface BlogPost {
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  category: string;
+  image: string;
+}
+
+// Sample blog posts data
+const blogPosts: BlogPost[] = [
   {
     title: 'Mastering Hebrew Verb Forms: A Complete Guide',
     excerpt: 'Understanding Hebrew verb forms is crucial for language mastery. In this guide, we break down the different forms and their usage...',
@@ -20,10 +31,12 @@ const blogPosts = [
   }
 ];
 
+// BlogPage component
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header section with animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,6 +48,7 @@ export default function BlogPage() {
           </p>
         </motion.div>
 
+        {/* Blog posts grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {blogPosts.map((post, index) => (
             <motion.article
@@ -70,7 +84,7 @@ export default function BlogPage() {
                 <p className="text-gray-600 mb-4">{post.excerpt}</p>
                 <a
                   href="#"
-                  className="text-brand-600 font-medium hover:text-brand-700"
+                  className="text-blue-600 font-medium hover:text-blue-700"
                 >
                   Read more →
                 </a>
